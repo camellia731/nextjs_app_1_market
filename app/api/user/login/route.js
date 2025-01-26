@@ -20,7 +20,6 @@ export async function POST(request) {
           .setIssuedAt()
           .setExpirationTime("24h")
           .sign(secretKey);
-        console.log(token);
         return NextResponse.json({ message: "ログイン成功" , token: token});
       } else {
         return NextResponse.json({

@@ -3,7 +3,7 @@ import { jetVerify, jwtVerify } from "jose";
 
 export async function middleware(request) {
   const token =
-    "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImR1bW15QGdtYWlsLmNvbSIsImlhdCI6MTczNTk1MzM5MCwiZXhwIjoxNzM2MDM5NzkwfQ.H_CNIhX6-TEc7Z801CBm434SSGe4Bm4U8xtDQWmMe5c";
+    "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImR1bW15MUBnbWFpbC5jb20iLCJpYXQiOjE3MzU5NTcwNTksImV4cCI6MTczNjA0MzQ1OX0.IVFytXLTR9UUYFsmhE6oehme_rG56yg4rw2ekZgiB3s";
   // await request.headers.get("Authorization")?.split(" ")[1];
   if (!token) {
     return new Response({ message: "Unauthorized" });
