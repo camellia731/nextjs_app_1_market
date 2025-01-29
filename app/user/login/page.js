@@ -29,7 +29,7 @@ const login = () => {
   };
   return (
     <div>
-      <h1>Login</h1>
+      <h1 className="page-title">Login</h1>
       <form onSubmit={handleSubmit}>
         <input
           value={email}

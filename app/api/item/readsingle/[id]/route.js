@@ -3,10 +3,10 @@ import { ItemModel } from "@/app/utils/schemaModels";
 import { NextResponse } from "next/server";
 
 
-export async function GET(request, context){
+export async function GET(request, { params }){
     try{
         await connectDB()
-        const singleItem = await ItemModel.findById(context.params.id)
+        const singleItem = await ItemModel.findById(params.id)
         return NextResponse.json({message: "アイテム読み取り成功（シングル）",
              singleItem: singleItem})
     }catch  {
