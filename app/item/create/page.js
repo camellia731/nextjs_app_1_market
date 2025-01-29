@@ -2,6 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import useAuth from "@/app/utils/useAuth";
+import ImgInput from "@/app/components/imgInput";
 
 const CreateItem = () => {
   const [title, setTitle] = React.useState("");
@@ -16,21 +17,24 @@ const CreateItem = () => {
     e.preventDefault();
     //const item = { title, description, price, image, email };
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/create`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({
-          title: title,
-          description: description,
-          price: price,
-          image: image,
-          email: loginUserEmail,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/item/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            title: title,
+            description: description,
+            price: price,
+            image: image,
+            email: loginUserEmail,
+          }),
+        }
+      );
       const jsonData = await response.json();
       alert(jsonData.message);
       router.push("/");
@@ -43,8 +47,9 @@ const CreateItem = () => {
 
   if (loginUserEmail) {
     return (
-      <div >
+      <div>
         <h1 className="page-title">Create Item</h1>
+        <ImgInput setImage={setImage} />
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -54,6 +59,7 @@ const CreateItem = () => {
             required
           />
           <input
+            value={price}
             type="text"
             name="price"
             placeholder="価格"
@@ -61,6 +67,7 @@ const CreateItem = () => {
             required
           />
           <input
+            value={image}
             type="text"
             name="image"
             placeholder="画像URL"
@@ -68,6 +75,7 @@ const CreateItem = () => {
             required
           ></input>
           <textarea
+            value={description}
             name="description"
             rows={15}
             placeholder="説明"
