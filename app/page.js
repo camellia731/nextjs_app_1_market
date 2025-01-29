@@ -5,7 +5,9 @@ import Link from "next/link";
 // 非同期関数を宣言
 const getAllItems = async () => {
   // APIエンドポイントからデータ取得用のレスポンスを取得
-  const response = await fetch("http://localhost:3000/api/item/readall");
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/item/readall`
+  );
   // レスポンスからJSON形式のデータを解析
   const jsonData = await response.json();
   // 取得したデータを返す
@@ -15,13 +17,13 @@ const getAllItems = async () => {
 
 const ReadAllItems = async () => {
   const allItems = await getAllItems();
-  
+
   return (
     <div className="grid-cionttainer-in">
-      {allItems.map(item => 
-        <Link href = {`/item/readsingle/${item._id}`} key={item._id}>
-          <Image 
-            src={item.image} 
+      {allItems.map((item) => (
+        <Link href={`/item/readsingle/${item._id}`} key={item._id}>
+          <Image
+            src={item.image}
             alt="item image"
             width={750}
             height={500}
@@ -29,9 +31,9 @@ const ReadAllItems = async () => {
           />
           <h2>{item.name}</h2>
           <p>{item.price}</p>
-          <p>{item.description.substring(0,80)}...</p>
+          <p>{item.description.substring(0, 80)}...</p>
         </Link>
-      )}
+      ))}
     </div>
   );
 };

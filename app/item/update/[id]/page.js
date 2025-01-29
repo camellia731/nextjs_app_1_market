@@ -37,7 +37,7 @@ const UpdateItem = (context) => {
     //const item = { title, description, price, image, email };
     try {
       const response = await fetch(
-        `http://localhost:3000/api/item/update/${params.id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/item/update/${params.id}`,
         {
           method: "PUT",
           headers: {

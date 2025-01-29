@@ -38,7 +38,7 @@ const DeleteItem = (context) => {
     //const item = { title, description, price, image, email };
     try {
       const response = await fetch(
-        `http://localhost:3000/api/item/delete/${params.id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/item/delete/${params.id}`,
         {
           method: "DELETE",
           headers: {
